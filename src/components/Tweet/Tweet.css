@@ -1,0 +1,22 @@
+.tweet__header{
+    display: flex;
+    padding-bottom: 15px;
+}
+
+.tweet__header > p{
+    padding-left: 10px;
+    height: 15px;
+    line-height: 15px;
+}
+
+.tweet__header > p > span{
+    font-size: 14px;
+    font-weight: 400;
+    padding-left: 10px; 
+}
+
+
+.imagepreview > img{
+    width: 95%;
+    border-radius: 20px;
+}

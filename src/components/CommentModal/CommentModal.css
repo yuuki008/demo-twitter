@@ -1,0 +1,65 @@
+.commodal__header{
+    display: flex;
+    height: 40px;
+    padding-top: 10px;
+}
+
+.commodal__header > h3{
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+}
+
+
+
+.commodal__header > h3 > span {
+    font-size: 15px;
+    font-weight: 400;
+    padding-left: 10px;
+}
+
+.center > img{
+    border-radius: 20px;
+    width: 90%;
+}
+
+.commodal__comment{
+    border-top: 1px solid var(--twitter-background);
+    padding-top: 30px;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+.commodal__com{
+    border-bottom: 1px solid var(--twitter-background);
+    display: flex;
+    height: 30px;
+    padding: 10px 10px 10px 0;
+    line-height: 30px;
+}
+
+.commodal__com > h3{
+    padding-left: 10px;
+    height: 35px;
+    line-height: 35px;
+    margin:0;
+}
+
+.commodal__com > h3 > span{
+    font-weight: 300;
+    font-size: 13px;
+}
+
+.commodal__com > p{
+    height: 35px;
+    line-height: 35px;
+    margin: 0 10px 0 auto;
+}
+
+.commodal__displayheader > h3 > span{
+    font-size: 15px;
+    font-weight: 400;
+    padding-left: 10px;
+}

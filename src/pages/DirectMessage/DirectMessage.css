@@ -1,0 +1,125 @@
+.direct{
+    flex: 0.45;
+    border-right: 1px solid var(--twitter-background);
+    overflow-y: scroll; 
+    padding-bottom: 130px;
+}
+
+.direct__header{
+    display: flex;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    height: 45px;
+    z-index: 100;
+    border: 1px solid var(--twitter-background);
+    padding: 20px 20px 20px 0;
+}
+
+.direct__header > h3{
+    padding-left: 15px;
+    margin: 0;
+    height: 40px;
+    line-height: 40px;
+}
+
+.direct__header > h3 > span{
+    font-size: 14px;
+    font-weight: 400;
+    padding-left: 8px;
+}
+
+
+.message {
+    color: #000;
+    clear: both;
+    line-height: 18px;
+    font-size: 15px;
+    padding: 8px;
+    position: relative;
+    margin: 8px 0;
+    max-width: 60%;
+    word-wrap: break-word;
+}
+
+.message::before {
+    position: absolute;
+    left: -10px;
+    top: 0;
+    content: '';
+    display: block;
+    border: solid;
+    border-width: 0px 16px 16px 0px;
+    border-color: transparent;
+    border-right-color: #fff;
+}
+
+.message.received::before{
+    right: auto;
+    left: -28px;
+    border-color: transparent;
+    border-left-color: lightgray;
+}
+
+.message.received {
+    background: lightgray;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    margin-left: 20px;
+}
+.message.sent::before {
+    left: auto;
+    right: -28px;
+    border-width: 0px 16px 16px 16px;
+    border-color: transparent;
+    border-left-color: #e1ffc7;
+}
+
+.message.sent {
+    background: #e1ffc7;
+    border-radius: 5px 0px 5px 5px;
+    float: right;
+    margin-right: 20px;
+}
+
+.message > p{
+    margin: 0;
+    padding: 10px;
+}
+
+.message > span {
+    font-size: 10px;
+    font-weight: 300;
+}
+
+
+.direct__post{
+    width: 35%;
+    min-width: fit-content;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    z-index: 100;
+    border: 1px solid var(--twitter-background);
+}
+
+.direct__post__header{
+    padding: 13px;
+    display: flex;
+}
+
+.direct__post__header > h3{
+    margin: 0;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 8px;
+}
+
+.direct__input > input{
+    
+    border: none;
+    border-radius: 20px;
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,45 @@
+.messages{
+    flex: 0.45;
+    border-right: 1px solid var(--twitter-background);
+    overflow-y: scroll;
+}
+
+.messages__header{
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+    border: 1px solid var(--twitter-background);
+    padding: 15px 20px;
+}
+
+.message__user{
+    display: flex;
+    padding: 15px;
+    border-bottom: 1px solid var(--twitter-background);
+}
+
+.message__user > h3{
+    margin: 0;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 10px;
+}
+
+.message__user > h3 > span{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.message__user > p{
+    padding-right: 15px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 0 0 auto;
+}
+
+.message__user > p > span{
+    font-size: 10px;
+    font-weight: 300;
+    padding-left: 10px;
+}

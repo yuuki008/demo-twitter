@@ -45,7 +45,7 @@ function App() {
           <Tweet open={tweetOpen} handleClose={handleTweetClose} />
           <CommentModal open={commentOpen} handleClose={handleCommentClose} />
           <SideBar handleTweetOpen={handleTweetOpen}/>
-          <Route path="/">
+          <Route exact path="/">
             <Redirect to={"/home"}/>
           </Route>
           <Route path="/home(/:id)?">

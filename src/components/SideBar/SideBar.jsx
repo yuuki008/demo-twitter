@@ -10,14 +10,10 @@ import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import { Button, IconButton } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import {useDispatch} from 'react-redux';
-import {push} from 'connected-react-router';
 
 function Sidebar({handleTweetOpen}) {
-  const dispatch = useDispatch()
-
-  
   return (
     <div className="sidebar">
       <TwitterIcon className="sidebar__twitterIcon" />

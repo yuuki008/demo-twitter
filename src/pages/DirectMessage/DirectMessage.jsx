@@ -41,7 +41,8 @@ const DirectMessage = () => {
     },[setMessage])
     
     const handleKeyDown = (event, roomId) => {
-        if(event.key === "Enter" && message){
+        event.preventDefault()
+        if(message){
             if(roomId === undefined || roomId === ""){
                 const roomRef = roomsRef.doc()
                 const id = roomRef.id;
@@ -136,24 +137,26 @@ const DirectMessage = () => {
                 </>
                 )}
             </div>
-
-
-
             <div className="direct__post">
-                <div className="direct__post__header">
-                    <Avatar src=""/>
-                    <h3>{displayDisplayname}</h3>
+                <div className="derect__p">
+                    <div className="direct__post__header">
+                        <Avatar src=""/>
+                        <h3>{displayDisplayname}</h3>
+                    </div>
+                    <div className="direct__input">
+                        <form  onSubmit={(event) => handleKeyDown(event,roomId)}>
+                            <input
+                            type="text"
+                            placeholder="Type a message"
+                            value={message}
+                            onChange={(event) => inputMessage(event)}
+                            />
+                            <input style={{display: 'none'}}
+                            type="submit"
+                            />
+                        </form>
+                    </div>
                 </div>
-                <div className="direct__input">
-                    <input
-                       type="text"
-                       placeholder="Type a message"
-                       value={message}
-                       onChange={(event) => inputMessage(event)}
-                       onKeyDown={(event) => handleKeyDown(event, roomId)}
-                    />
-                </div>
-
             </div>
         </div>
     )

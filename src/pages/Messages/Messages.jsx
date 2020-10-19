@@ -5,9 +5,21 @@ import {useDispatch, useSelector} from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
 import {push} from 'connected-react-router';
 import './Messages.css'
+import { Button } from '@material-ui/core';
+import {makeStyles} from '@material-ui/styles';
+
+const useStyles = makeStyles({
+    user:{
+        display: 'flex',
+        padding: '15px',
+        borderBottom: '1px solid var(--twitter-background)',
+        width: '100%',
+    }
+})
 
 const Messages = () => {
     const dispatch = useDispatch()
+    const classes = useStyles()
     const selector = useSelector(state => state)
     const displayUid = getUid(selector)
     const rooms = getRooms(selector)
@@ -42,15 +54,19 @@ const Messages = () => {
             </div>
             {messages.length > 0 && 
                 messages.map((message, index) => (
-                    <div 
-                    className="message__user" 
+                    <Button 
+                    className={classes.user} 
                     key={message.timestamp}
                     onClick={() => dispatch(push('/direct/' + message.uid))}
                     >
-                        <Avatar src={message.avatar}/>
-                        <h3>{message.displayname}<span>@{message.username}</span></h3>
-                        <p>{message.message}<span>{time(message.timestamp)}</span></p>
-                    </div>
+                        <div className="message__user">
+                            <Avatar src={message.avatar}/>
+                            <h3>{message.displayname}<span>@{message.username}</span></h3>
+                        </div>
+                        <div className="message__last">
+                            <p>{message.message}<span>{time(message.timestamp)}</span></p>            
+                        </div>
+                    </Button>
                 ))
             }
         </div>

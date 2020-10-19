@@ -192,3 +192,12 @@ body{
   min-width: fit-content;
   overflow-y: scroll;
 }
+
+p,h1, h2, h3, h4, h5{
+  margin: 0;
+}
+
+p {
+  font-weight: 700;
+  font-size: 14px;
+}

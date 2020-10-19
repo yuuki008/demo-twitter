@@ -1,6 +1,6 @@
 .home{
     float: left;
-    flex: 0.45;
+    width: 50%;
     border-right: 1px solid var(--twitter-background);
     overflow-y: scroll;
     /* min-width: fit-content; */

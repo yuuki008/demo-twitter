@@ -1,7 +1,13 @@
 .messages{
-    flex: 0.45;
+    width: 50%;
     border-right: 1px solid var(--twitter-background);
     overflow-y: scroll;
+}
+
+.message__user{
+    display: flex;
+    margin-right: auto;
+    position: relative;
 }
 
 .messages__header{
@@ -13,11 +19,6 @@
     padding: 15px 20px;
 }
 
-.message__user{
-    display: flex;
-    padding: 15px;
-    border-bottom: 1px solid var(--twitter-background);
-}
 
 .message__user > h3{
     margin: 0;
@@ -27,18 +28,18 @@
 }
 
 .message__user > h3 > span{
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
 }
 
-.message__user > p{
-    padding-right: 15px;
+.message__last > p{
+    font-weight: 500;
     height: 40px;
+    font-size: 13px;
     line-height: 40px;
-    margin: 0 0 0 auto;
 }
 
-.message__user > p > span{
+.message__last > p > span{
     font-size: 10px;
     font-weight: 300;
     padding-left: 10px;

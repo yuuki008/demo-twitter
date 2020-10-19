@@ -176,6 +176,8 @@ export const signUp = (username, displayname, email, password, confirmPassword) 
                         username: username,
                         displayname: displayname,
                         avatar: "",
+                        background: "",
+                        description: "",
                     }
                     db.collection('users').doc(uid).set(userInitialData)
                         .then(() => {

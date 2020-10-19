@@ -1,12 +1,15 @@
 .direct{
-    flex: 0.45;
+    width: 50%;
     border-right: 1px solid var(--twitter-background);
     overflow-y: scroll; 
     padding-bottom: 130px;
+    display: flex;
+    flex-direction: column;
 }
 
 .direct__header{
     display: flex;
+    width: 100%;
     position: sticky;
     top: 0;
     background-color: white;
@@ -29,6 +32,9 @@
     padding-left: 8px;
 }
 
+.direct__chats{
+    width: 100%;
+}
 
 .message {
     color: #000;
@@ -94,13 +100,17 @@
 
 
 .direct__post{
-    width: 35%;
-    min-width: fit-content;
     position: fixed;
-    bottom: 0;
     background-color: white;
     z-index: 100;
     border: 1px solid var(--twitter-background);
+    bottom: 0;
+    width: 49%;
+    max-width: 650px;
+}
+
+.derect__p{
+    width:100%;
 }
 
 .direct__post__header{
@@ -115,11 +125,10 @@
     padding-left: 8px;
 }
 
-.direct__input > input{
-    
+.direct__input > form > input{    
     border: none;
     border-radius: 20px;
-    width: 90%;
+    width: 95%;
     padding: 10px;
     margin-bottom: 20px;
 }

@@ -46,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
   input:{
       height: 'auto',
   },
+  button:{
+      width: '100%',
+  }
 }));
 
 const InputModal = ({type, open, handleClose, settingUser }) => {
@@ -56,11 +59,11 @@ const InputModal = ({type, open, handleClose, settingUser }) => {
     
     const uid = getUid(selector)
     const [input ,setInput] = useState(""),
-          [row, setRow] = useState(1);
+          [row, setRow] = useState(1),
+          [label, setLabel] = useState("");
     
     
     const handleInput = useCallback((event) => {
-        console.log(event.target.value)
         setInput(event.target.value)
     },[setInput])
     
@@ -69,14 +72,22 @@ const InputModal = ({type, open, handleClose, settingUser }) => {
     const handleSet = useCallback(() => {
         if(type = "description"){
             const newInput = input.replace('/n', <br/>)
+            if(newInput.length > 50){
+                alert('50文字を超えています!')
+                return false
+            }
             db.collection("users").doc(uid).set({description: newInput}, {merge: true})
             .then(() => {
                 settingUser()
+                handleClose(setInput)
+                setLabel("")
             })
         }else if(type = "name"){
             db.collection('users').doc(uid).set({username: input}, {merge: true})
             .then(() => {
                 settingUser()
+                handleClose(setInput)
+                setLabel("")
             })
         }
     })
@@ -89,8 +100,10 @@ const InputModal = ({type, open, handleClose, settingUser }) => {
             if(type = 'description'){
                 setInput(data.description)
                 setRow(5)
+                setLabel('ユーザー説明')
             }else if(type = "name"){
                 setInput(data.username)
+                setLabel("ユーザー名")
             }       
         })
     },[])
@@ -98,22 +111,22 @@ const InputModal = ({type, open, handleClose, settingUser }) => {
     return (
         <Modal
             open={open}
-            onClose={() => handleClose(setInput)}
+            onClose={() => handleClose()}
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
         >
         <div style={modalStyle} className={classes.paper}>
         <div>
-            <h4>{type}</h4>
+            <h4>{label}</h4>
             <TextInput
                 className={classes.input}
                 fullWidth={true} label={type} multiline={true} required={true} 
                 rows={4} value={input} type={"text"} onChange={handleInput}
             />
             <Button
+            className={classes.button}
             onClick={() => {
             handleSet()
-            handleClose(setInput)
             }}
             >アカウント更新</Button>
         </div>

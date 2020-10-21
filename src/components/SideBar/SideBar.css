@@ -23,4 +23,18 @@
     height: 50px !important;
     margin-top: 20px !important;
   }
+
+  @media (max-width: 750px){
+    .sidebar{
+      width: 100px
+    }
+    .sidebaroption{
+      display: none;
+    }
+  
+    .sidebarOption{
+      justify-content: center;
+    }
+  }
+
   

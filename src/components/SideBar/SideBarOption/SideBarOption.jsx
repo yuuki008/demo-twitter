@@ -14,7 +14,7 @@ function SidebarOption({Icon, text, path, active}) {
     onClick={() => selectMenu(path)} 
     >
       <Icon />
-      <h2>{text}</h2>
+      <h2 className="sidebaroption">{text}</h2>
     </div>
   );
 }

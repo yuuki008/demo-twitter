@@ -126,7 +126,15 @@ const Tweet = ({open, handleClose}) => {
                 <PrimaryButton 
                     label="Tweet"
                     onClick={() => {
-                        dispatch(sendTweet(image, text, username, displayname))
+                        if(text ===""){
+                            alert('必須項目が未入力です！')
+                            return false
+                        }
+                        if(text.length > 140){
+                            alert(`文字数が${text.length - 140}文字オーバーしました。`)
+                            return false
+                        }
+                        dispatch(sendTweet(image, text, username, displayname, handleClose))
                         setText("")
                         handleClose()
                     }}

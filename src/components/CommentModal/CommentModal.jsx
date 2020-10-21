@@ -51,8 +51,6 @@ const CommentModal = ({open, handleClose}) => {
     const [comments, setComments] = useState([])
     const [post, setPost] = useState({})
     const postId = window.location.pathname.split('/home/')[1];
-    const displayname = getDisplayname(selector);
-    const username  = getUsername(selector)
 
     useEffect(() => {
         if(postId !== undefined){
@@ -125,7 +123,7 @@ const CommentModal = ({open, handleClose}) => {
                 <div className="module-spacer--extra-small"/>
                 <div className="center">
                     <PrimaryButton 
-                        label="Comment"
+                        label="コメント追加"
                         onClick={() => {
                             dispatch(addComment(postId, comment, post))
                             setComment("")

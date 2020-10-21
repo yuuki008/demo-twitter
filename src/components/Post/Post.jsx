@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useCallback } from "react";
 import "./Post.css";
 import { Avatar, Badge } from "@material-ui/core";
-import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import RepeatIcon from "@material-ui/icons/Repeat";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import PublishIcon from "@material-ui/icons/Publish";
 import Button from '@material-ui/core/Button';
 import {useDispatch, useSelector} from 'react-redux';
@@ -13,23 +12,28 @@ import {makeStyles} from '@material-ui/styles';
 import {push} from 'connected-react-router'
 import {db} from '../../firebase/index'
 import { addLike, deleteLike } from "../../reducks/posts/operations";
-// import { addFollow, deleteFollow } from "../../reducks/users/operations";
 import {getUid} from '../../reducks/users/selectors';
 import { addFollow, deleteFollow } from "../../reducks/users/operations";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     like:{
         color: "red",
+    },
+    icon:{
+      width: "30px",
+      height: "30px",
+    },
+    font:{
+      fontSize: '10px',
     }
-})
+}))
 
-const Post = ({postId, timestamp, text, image, uid, handleCommentOpen, matchLike, likes, matchFollow, follows}) => {
+const Post = ({postId, timestamp, text, image, uid, handleCommentOpen, matchLike, likes}) => {
     const dispatch = useDispatch()
     const selector = useSelector(state => state)
     const classes = useStyles();
 
     const displayUid  = getUid(selector)
-    const [isFollow, setIsFollow] = useState(false)
     const [like, setLike] = useState(false);
     const [likenumber, setLikenumber] = useState(0)
     const [commentnumber, setCommentnumber] = useState(0)
@@ -40,10 +44,6 @@ const Post = ({postId, timestamp, text, image, uid, handleCommentOpen, matchLike
       setLike(!like)
     },[setLike, like])
 
-    const followToggle = useCallback(() => {
-      setIsFollow(!isFollow)
-    },[setIsFollow, isFollow])
-
     useEffect(() => {
       if(matchLike.length > 0){
         setLike(true)
@@ -51,14 +51,6 @@ const Post = ({postId, timestamp, text, image, uid, handleCommentOpen, matchLike
         setLike(false)
       }
     },[likes])
-
-    useEffect(() => {
-      if(matchFollow.length > 0){
-        setIsFollow(true)
-      }else{
-        setIsFollow(false)
-      }
-    },[follows])
 
     useEffect(() => {
       db.collection('posts').doc(postId).collection('like')
@@ -77,52 +69,34 @@ const Post = ({postId, timestamp, text, image, uid, handleCommentOpen, matchLike
 
     return(
         <div className="post">
-        <div className="post__avatar">
-          <IconButton
-            onClick={() => dispatch(push('/profile/' + uid))}
-          >
-            <Avatar src={user.avatar} />
-          </IconButton>
-        </div>
         <div className="post__body">
           <div className="post__header">
             <div className="post__headerText">
-              <h3>
-                {user.displayname}
-                <span className="post__headerSpecial">
-                  {/* {verified && <VerifiedUserIcon className="post__badge" />} @ */}
-                  @{user.username}
-                </span>
-            </h3>
-            {displayUid !== uid && (
-              !isFollow ? (
-                <Button
-                onClick={() => {
-                  dispatch(addFollow(user.uid, user.displayname, user.username, user.avatar, user.verified))
-                  followToggle()
-                }}
+                <IconButton
+                  className={classes.icon}
+                  onClick={() => dispatch(push('/profile/' + uid))}
                 >
-                    フォロー
-                </Button>
-              ):(
-                <Button
-                onClick={() => {
-                  dispatch(deleteFollow(user.uid))
-                  followToggle()
-                }}
-                >
-                    フォロー解除
-                </Button>
-              )
-            )}
+                  <Avatar src={user.avatar} />
+                </IconButton>
+                <h2>
+                  {user.displayname}
+                  <span className="post__headerSpecial">
+                    @{user.username}
+                  </span>
+              </h2>
             </div>
             <div className="post__headerDescription">
               <p>{text}</p>
             </div>
           </div>
-          <img src={image} alt="" />
+          <div className="post__image">
+            <img src={image} alt="" />
+          </div>
           <div className="post__footer">
-            <Badge badgeContent={commentnumber}>
+            <Badge 
+            badgeContent={commentnumber}
+            className={classes.icon}
+            >
               <IconButton
               onClick={() => {
                 handleCommentOpen()
@@ -132,8 +106,17 @@ const Post = ({postId, timestamp, text, image, uid, handleCommentOpen, matchLike
                 <ChatBubbleOutlineIcon fontSize="small" />
               </IconButton>
             </Badge>
-            <RepeatIcon fontSize="small" />
-            <Badge badgeContent={likenumber}>
+            <Badge
+            className={classes.icon}
+            >
+              <IconButton>
+                <RepeatIcon fontSize="small" />
+              </IconButton>
+            </Badge>
+            <Badge 
+            badgeContent={likenumber}
+            className={classes.icon}
+            >
               {!like ? (
                 <IconButton
                   onClick={() => {
@@ -141,7 +124,7 @@ const Post = ({postId, timestamp, text, image, uid, handleCommentOpen, matchLike
                     likeToggle()
                   }}
                 >    
-                  <FavoriteBorderIcon fontSize="small" />
+                  <FavoriteIcon fontSize="small" />
                 </IconButton>
               ):(
                 <IconButton
@@ -151,11 +134,17 @@ const Post = ({postId, timestamp, text, image, uid, handleCommentOpen, matchLike
                   likeToggle()
                 }}
                 >    
-                  <FavoriteBorderIcon fontSize="small" />
+                  <FavoriteIcon fontSize="small" />
                 </IconButton>
               )}
             </Badge>
-            <PublishIcon fontSize="small" />
+            <Badge
+            className={classes.icon}
+            >
+              <IconButton>
+                <PublishIcon fontSize="small" />
+              </IconButton>
+            </Badge>
           </div>
         </div>
       </div>

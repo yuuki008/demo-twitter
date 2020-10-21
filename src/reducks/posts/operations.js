@@ -63,15 +63,20 @@ export const addComment = (postId, comment, post) => {
 }
 
 
-export const sendTweet = (image, text, username, displayname, verified) => {
+export const sendTweet = (image, text, username, displayname, handleClose) => {
     return async (dispatch, getState) => {
+        let post = ""
+        if(image.path){
+            post = image.path
+        }
         const uid = getState().users.uid
         const timestamp = FirebaseTimestamp.now()
+        
 
         const data = {
             avatar: "",
             text: text,
-            image: image.path,
+            image: post,
             username: username,
             displayname: displayname,
             timestamp: timestamp,

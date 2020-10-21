@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import './App.css';
 import {Redirect, Route, Switch} from 'react-router';
-import SignUp from './pages/auth/SignUp';
-import SignIn from './pages/auth/SignIn';
-import Reset from './pages/auth/Reset';
+import SignUp from './pages/Auth/SignUp';
+import SignIn from './pages/Auth/SignIn';
+import Reset from './pages/Auth/Reset';
 import Auth from './Auth';
 import Home from './pages/Home/Home';
 import SideBar from './components/SideBar/SideBar'

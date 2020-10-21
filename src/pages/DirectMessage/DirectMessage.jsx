@@ -5,12 +5,15 @@ import { db, FirebaseTimestamp } from '../../firebase'
 import { getDisplayname, getUid, getUsername, getAvatar } from '../../reducks/users/selectors'
 import {useSelector, useDispatch} from 'react-redux';
 import {sendMessage} from '../../reducks/users/operations';
-import ListIcon from '@material-ui/icons/List';
 import { makeStyles } from '@material-ui/styles';
 import {push} from 'connected-react-router';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles({
     icon: {
+        position: 'absolute',
+        left: 0,
+        top: "50",
         width: "40px",
         height: "40px"
     }
@@ -22,8 +25,8 @@ const DirectMessage = () => {
     const classes = useStyles()
     const dispatch = useDispatch();
     const displayUid = getUid(selector)
-
-
+    
+    
     const displayDisplayname = getDisplayname(selector)
     const displayUsername = getUsername(selector);
     const displayAvatar = getAvatar(selector)
@@ -35,7 +38,7 @@ const DirectMessage = () => {
     const [roomId, setRoomId] = useState("");
     const uid = window.location.pathname.split('/direct/')[1]
     const [user, setUser] = useState({})
-
+    
     const inputMessage = useCallback((event) => {
         setMessage(event.target.value)
     },[setMessage])
@@ -79,7 +82,7 @@ const DirectMessage = () => {
             setMessage("")
         }
     }
-
+    
     const time = (timestamp) => {
         const date = timestamp.toDate()
         return (date.getMonth() + 1) + "/"
@@ -87,8 +90,7 @@ const DirectMessage = () => {
         + ('00' + date.getHours()).slice(-2) + ":"
         + ('00' + date.getMinutes()).slice(-2)    
     }
-
-
+        
     useEffect(() => {
         db.collection('users').doc(uid).get()
         .then(snapshot => {{
@@ -102,8 +104,8 @@ const DirectMessage = () => {
             }
         })
     },[sendMessage])
-
-
+    
+    
     useEffect(() => {
         if(roomId !== ""){
             db.collection('rooms').doc(roomId).collection('messages').orderBy('timestamp', 'asc')
@@ -113,6 +115,13 @@ const DirectMessage = () => {
         }
     },[roomId, sendMessage])
 
+    useEffect(() => {
+        const scrollArea = document.getElementById('scroll-area');
+        if (scrollArea) {
+            scrollArea.scrollTop = scrollArea.scrollHeight;
+        }
+    }) 
+
 
 
     return (
@@ -121,22 +130,23 @@ const DirectMessage = () => {
                 <IconButton 
                 onClick={() => dispatch(push('/messages'))}
                 className={classes.icon}>
-                    <ListIcon/>
+                    <ArrowBackIcon/>
                 </IconButton>
                 <Avatar src={user.avatar}/>
                 <h3>{user.displayname}<span>{user.username}</span></h3>
             </div>
 
-            <div className="direct__chats">
+            <div id={"scroll-area"} className="direct__chats">
                 {messages.map((message, index) => 
-                <>
-                    <div className={`message ${message.uid === displayUid ? "sent" : "received"}`} key={message.messageId}>
+                <React.Fragment key={index}>
+                    <div className={`message ${message.uid === displayUid ? "sent" : "received"}`} >
                         <p>{message.message}</p>
                     　　<span>{time(message.timestamp)}</span>
                     </div>
-                </>
+                </React.Fragment>
                 )}
             </div>
+
             <div className="direct__post">
                 <div className="derect__p">
                     <div className="direct__post__header">

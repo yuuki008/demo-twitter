@@ -1,7 +1,6 @@
 .direct{
     width: 50%;
     border-right: 1px solid var(--twitter-background);
-    overflow-y: scroll; 
     padding-bottom: 130px;
     display: flex;
     flex-direction: column;
@@ -9,6 +8,8 @@
 
 .direct__header{
     display: flex;
+    justify-content: center;
+    padding: 20px 0;
     width: 100%;
     position: sticky;
     top: 0;
@@ -16,7 +17,6 @@
     height: 45px;
     z-index: 100;
     border: 1px solid var(--twitter-background);
-    padding: 20px 20px 20px 0;
 }
 
 .direct__header > h3{
@@ -34,6 +34,7 @@
 
 .direct__chats{
     width: 100%;
+    overflow-y: scroll;
 }
 
 .message {

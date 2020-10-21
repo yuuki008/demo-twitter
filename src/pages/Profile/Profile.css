@@ -21,13 +21,14 @@
     width: 100%;
     top: 0;
     background-color: white;
-    height: 500px;
+    height: 480px;
     z-index: 100;
-    border: 1px solid var(--twitter-background);
+    border-bottom: 3px solid var(--twitter-background);
 }
 
 .profile__info{
     border-top: 1px solid var(---twitter-background);
+    margin-top: 40px;
     display: flex;
     top: 140px;
     padding: 0 0 0 20px;
@@ -35,10 +36,9 @@
 
 .profile__info > h3{
     margin: 0;
-    height: 60px;
-    line-height: 60px;
+    height: 40px;
+    line-height: 40px;
     padding-left: 15px;
-    padding-right: 20px;
 }
 
 .profile__info > h3 > span{
@@ -50,20 +50,22 @@
 
 .profile__follow{
     display: flex;
+    padding-left: 20px;
     height: 60px;
 }
 
 .profile__follow > p{
+    padding-left: 10px;
     font-weight: 500;
-    padding-left: 20px;
+    color: gray;
     font-size:14px;
-    height: 60px;
-    line-height: 60px;
+    height: 43px;
+    line-height: 43px;
 }
 
 .profile__follow > p > span{
     font-size: 10px;
-    padding-left: 5px;
+    padding: 2px;
 }
 
 .profile__userDescription{
@@ -98,3 +100,24 @@
     border: 3px solid lightgray;
     opacity: 0.8;
 }
+
+.no__user__image{
+    background-color: #bdbdbd;
+    width: 100%;
+    border-radius: 10px;
+    height: 250px;
+    border: 3px solid lightgray;
+    opacity: 0.8;
+    font-size: 24px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+.no__displayuser{
+    display: flex;
+    margin-left: auto;
+}
+

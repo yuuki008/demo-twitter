@@ -12,7 +12,9 @@
     margin-left: 10px;
 }
 
-
+.commodal__post{
+    padding: 20px;
+}
 
 .commodal__header > h3 > span {
     font-size: 15px;
